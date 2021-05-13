@@ -53,6 +53,7 @@
 
 
 
+
 \setbeamertemplate{footline}
 {%
 	\begin{beamercolorbox}{section in head/foot}
@@ -66,12 +67,11 @@
 }
 \setbeamertemplate{navigation symbols}{}
 
+%\setbeamercolor{block title}{fg = white, bg = gray}
+%\setbeamercolor{block body}{fg = black, bs = blue!30}
+\usepackage[most]{tcolorbox}
 
-
-
-
-
-
+\setbeamertemplate{blocks}[rounded][shadow=false] % use rounded blocks with standard beamer shadow
 
 
 \begin{document}
@@ -82,7 +82,7 @@
 
 	
 	\institute{Future Forum}
-	\date[\today]{2021 YRP Seminar, \today}
+	\date[\today]{2021 YRP Seminar, May 18, 2021}
 	%\subject{}
 	%\setbeamercovered{transparent}
 	%\setbeamertemplate{navigation symbols}{}
@@ -106,7 +106,7 @@
 	\begin{itemize}
 		\item Know the types of graphs we should avoid 
 		\item Learn about RStudio IDE (integrated development environment) 
-		\item Data visualization in \texttt{R}
+		\item Data visualization in R
 		\item Data import and transformation
 		\item Data export 
 		\item Discussion about your questions or any concerns about R or datasets   
@@ -115,6 +115,27 @@
 \textbf{Remember:} It will not work in a flow and structure, because we practice in the real example as a researcher have a dataset and applied it for a specific research study.
 \end{frame}
 %------------------------------------------------------------------%
+\section{R Sources}
+	
+	\begin{frame}
+
+	\frametitle{\bfseries Seminar Materials}
+	
+	\begin{itemize}
+		\item You can code, data and slide from my repository at GitHub: \url{https://github.com/nithkosal/DataVisualization}
+		\item Intermediate level: R for Data Science by Hadley Wickham and Garrett Grolemund. Available online:
+		\url{https://r4ds.had.co.nz/}
+		\item Advanced R by Hadley Wickham. Also available here:
+		\url{https://adv-r.hadley.nz/}
+		\item R Blog: \url{https://www.r-bloggers.com/}
+		\item Ask questions or share your knowledge about programming:
+		\url{https://stackoverflow.com/questions/tagged/r}
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------------------------%
+
 	\begin{frame}
 
 		\frametitle{\bfseries The Thing to know when you work with data}
@@ -154,7 +175,8 @@
 
 	\end{frame}
 %------------------------------------------------------------------%
-	\section[Literature]{Related Literature}
+\section{Definition}
+
 \begin{frame}
 
 	\frametitle{\bfseries Now, We Look at Some Data Visualizations}
@@ -173,7 +195,7 @@
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------%
-
+\section{Good Figures}
 \begin{frame}
 	
 	\frametitle{\bfseries}
@@ -194,7 +216,7 @@
 			
 \end{frame}
 %------------------------------------------------------------------%
-
+\section{Bad Figures}
 \begin{frame}
 	
 	\frametitle{\bfseries}
@@ -213,12 +235,15 @@
 	\begin{figure}
 		\vspace{-1em}
 		\includegraphics[width=0.9\linewidth]{Figure/excel-3d-column-chart-values}
+		\\
+		\tiny{A 3-D Column Chart created in Microsoft Excel}
 	\end{figure}
 	\begin{itemize}
 		\vspace{-1em}
 		\footnotesize{
-			\item Scatterplots are the workhorse of data visualization in social science.
-			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+			\item Charts like this are common in business presentations and popular journalism, and are also seen in academic journal articles. Here we seek to avoid too much junk by using Excel’s default settings.
+			 
+		 }
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------%
@@ -278,13 +303,14 @@
 		\includegraphics[width=0.8\linewidth]{Figure/preception-data-1}
 		
 		\\
-		\tiny{Source: `Monstrous Costs’ by Nigel Holmes}
+		\tiny{A junk-free plot that remains hard to interpret}
 		\label{fig:anscombe-1}
 	\end{figure}
 	\begin{itemize}
 		\footnotesize{
-			\item Scatterplots are the workhorse of data visualization in social science.
-			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+			\item The bars show the total value, with subdivisions by the relative contribution of different categories to each year’s observation.
+			\item Charts like this are common when showing the absolute contribution of various products to total sales over time, or the number of different groups of people in a changing population.
+		}
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------%
@@ -297,19 +323,32 @@
 		\includegraphics[width=0.9\linewidth]{Figure/perception-curves-1}
 		
 		\\
-		\tiny{Source: `Monstrous Costs’ by Nigel Holmes}
+		\tiny{Source: An example by William S. Cleveland}
 		\label{fig:anscombe-1}
 	\end{figure}
 	\begin{itemize}
 		\footnotesize{
-			\item Scatterplots are the workhorse of data visualization in social science.
-			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+			\item In the left-side panel, the lines appear at first glance to be converging as the value of x increases.
+			\item The data plotted in each panel are the same, however. The apparent convergence in the left panel is just a result of the aspect ratio of the figure. 
+		}
 	\end{itemize}
+
 \end{frame}
 %------------------------------------------------------------------%
 
 \begin{frame}
-	\section{}
+	
+	\frametitle{\bfseries}
+	\begin{block}{In Short}
+	These problems are not easily solved by the application of good taste, or by following a general rule to maximize the data-to-ink ratio, even though that is a good rule to follow. Instead, we need to know a little more about the role of perception in the interpretation of graphs. 
+	\end{block}
+
+\end{frame}
+%------------------------------------------------------------------%
+
+\section{Variables}
+\begin{frame}
+
 	\frametitle{\bfseries Variable Types in the Statistical Software}
 	
 	\begin{enumerate}
@@ -328,5 +367,18 @@ At the same time, there are three other common types of variables
 	
 \end{frame}
 %------------------------------------------------------------------%
+
+\section{Practice}
+	\begin{frame}
+	\frametitle{\bfseries}
+		\begin{beamercolorbox}{title}
+		\begin{center}
+			\bfseries \huge Let us go practice!
+		\end{center}	
+	\end{beamercolorbox}
+	
+	\end{frame}
+%------------------------------------------------------------------%
+
 
 \end{document}
