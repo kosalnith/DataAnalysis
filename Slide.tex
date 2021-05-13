@@ -1,0 +1,332 @@
+\documentclass[11pt]{beamer}
+%\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5,debug]{beamerposter} 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+%\usefonttheme{serif}
+
+%\usepackage[default, osfigures]{opensans}
+\usepackage[sfdefault]{FiraSans}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usetheme{Boadilla}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{array} 
+\usepackage{booktabs}
+\newcommand{\head}[1]{\textnormal{\textbf{#1}}}
+
+\usepackage{tikz}
+\usetikzlibrary{spy}
+
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{itemize subitem}[square]
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{itemize mini template}[ball]
+
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{enumerate subitem}[square]
+\setbeamertemplate{enumerate subsubitem}[circle]
+\setbeamertemplate{enumerate mini template}[ball]
+
+
+\renewcommand{\baselinestretch}{1.3}
+\setbeamersize{text margin left=0.5cm}
+\setbeamersize{text margin right=0.5cm}
+
+
+%\setbeamertemplate{footline}[frame number]
+
+
+
+
+
+
+\setbeamertemplate{footline}
+{%
+	\begin{beamercolorbox}{section in head/foot}
+		\vskip-1.7pt \insertnavigation {\paperwidth } \vskip-3.1pt   
+
+
+
+
+
+	\end{beamercolorbox}%
+}
+\setbeamertemplate{navigation symbols}{}
+
+
+
+
+
+
+
+
+
+\begin{document}
+	\author[Nith Kosal]{Nith Kosal}
+	\title[Presentation Title]{\bfseries Data Visualization}
+	\subtitle{\bfseries A Practical Introduction}
+	\titlegraphic{\includegraphics[width=0.2\linewidth]{Figure/Logo}}
+
+	
+	\institute{Future Forum}
+	\date[\today]{2021 YRP Seminar, \today}
+	%\subject{}
+	%\setbeamercovered{transparent}
+	%\setbeamertemplate{navigation symbols}{}
+
+	\begin{frame}[plain]
+		\maketitle
+		
+	\end{frame}
+%------------------------------------------------------------------%
+% Page number set from 1 into page 2
+	\addtobeamertemplate{navigation symbols}{}{     
+		\usebeamerfont{footline}%
+		\insertframenumber/\inserttotalframenumber }
+	\setcounter{framenumber}{0}
+%------------------------------------------------------------------%	
+\section{Goals}
+	\begin{frame}
+
+	\frametitle{\bfseries Goal of Today's Seminar}
+	
+	\begin{itemize}
+		\item Know the types of graphs we should avoid 
+		\item Learn about RStudio IDE (integrated development environment) 
+		\item Data visualization in \texttt{R}
+		\item Data import and transformation
+		\item Data export 
+		\item Discussion about your questions or any concerns about R or datasets   
+	\end{itemize}
+
+\textbf{Remember:} It will not work in a flow and structure, because we practice in the real example as a researcher have a dataset and applied it for a specific research study.
+\end{frame}
+%------------------------------------------------------------------%
+	\begin{frame}
+
+		\frametitle{\bfseries The Thing to know when you work with data}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.8\linewidth]{Figure/data-science}
+			\\ 
+			\footnotesize Source: Grolemund and Wickham (2016)
+			\label{fig:data-science}
+		\end{figure}
+
+	\begin{itemize}
+		\item Tidying your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored.
+		
+		\item Together, tidying and transforming, we called \textit{wrangling}
+
+		
+		
+	\end{itemize}
+	\end{frame}
+%------------------------------------------------------------------%
+	
+	\begin{frame}
+		\section[]{}
+		\frametitle{\bfseries What does data visualization mean?}
+		
+		\begin{itemize}
+			\item A reporting tool: the representation of information in the form of a chart, diagram, picture, etc.
+			\item It is a part of \textit{hypothesis generation} or \textit{data exploration}. 
+			\begin{itemize}
+				\item A precise mathematical model to generate falsifiable predictions.
+				\item Only use an observation once to confirm a hypothesis.
+			\end{itemize}
+		\item Modelling is an important part of the exploratory process.
+		\end{itemize}
+
+	\end{frame}
+%------------------------------------------------------------------%
+	\section[Literature]{Related Literature}
+\begin{frame}
+
+	\frametitle{\bfseries Now, We Look at Some Data Visualizations}
+	\begin{figure}
+		\vspace{-.5em}
+		\includegraphics[width=0.5\linewidth]{Figure/anscombe-1}
+		\includegraphics[width=0.4\linewidth]{Figure/jackman-outlier}
+		\\
+		\tiny{Source: Chatterjee and Firat (2007), Jackman (1980)}
+		\label{fig:anscombe-1}
+	\end{figure}
+	\begin{itemize}
+		\footnotesize{
+		\item Scatterplots are the workhorse of data visualization in social science.
+		\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+			\vspace{-1em}
+			
+			\begin{tabular}{p{2.6cm}p{8.6cm}}
+				\footnotesize{
+					Within each panel, the correlation between the \texttt{x} and \texttt{y} variables is set to be \texttt{0.6}, a pretty good degree of association. But the actual distribution of points is created by a different process in each case.} & 
+				\begin{figure}
+					\vspace{-1.7em}
+					\includegraphics[width=1\linewidth]{Figure/correlations-1}\raggedleft
+					\label{fig:correlations-1}
+					\\
+					\tiny{Source: Jan Vanhove (2016)}
+				\end{figure}
+				
+			\end{tabular}
+			
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\vspace{-1em}
+	\centering{
+			\includegraphics[width=.8\linewidth]{Figure/chartjunk-life-expectancy}
+			\\ \vspace{-1em}
+			\tiny{Source: Kieran Healy (2018)}}\\
+		The bars are hard to read and compare.
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\begin{figure}
+		\vspace{-1em}
+		\includegraphics[width=0.9\linewidth]{Figure/excel-3d-column-chart-values}
+	\end{figure}
+	\begin{itemize}
+		\vspace{-1em}
+		\footnotesize{
+			\item Scatterplots are the workhorse of data visualization in social science.
+			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\vspace{-1em}
+	{\centering
+		\includegraphics[width=1\linewidth]{Figure/minard}
+		\\ 	\vspace{-1em}
+		\tiny{Source: Charles Joseph Minard --- Minard’s visualization of Napoleon’s retreat from Moscow.}}\\
+	\footnotesize {Edward Tufte's comment: ``\textit{Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design, it consists of complex ideas communicated with clarity, precision, and efficiency.}''}
+\end{frame}
+%------------------------------------------------------------------%
+
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\begin{figure}
+		\vspace{-.5em}
+		\includegraphics[width=0.6\linewidth]{Figure/holmes-monstrous-only}
+
+		\\
+		\tiny{Source: `Monstrous Costs’ by Nigel Holmes}
+		\label{fig:anscombe-1}
+	\end{figure}
+	\begin{itemize}
+		\footnotesize{
+			\item Scatterplots are the workhorse of data visualization in social science.
+			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\begin{figure}
+		\vspace{-1em}
+		\includegraphics[width=0.9\linewidth]{Figure/democracy-voeten-version-2}
+	\end{figure}
+	\begin{itemize}
+		\vspace{-1em}
+		\footnotesize{
+			\item Scatterplots are the workhorse of data visualization in social science.
+			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\begin{figure}
+		\vspace{-.5em}
+		\includegraphics[width=0.8\linewidth]{Figure/preception-data-1}
+		
+		\\
+		\tiny{Source: `Monstrous Costs’ by Nigel Holmes}
+		\label{fig:anscombe-1}
+	\end{figure}
+	\begin{itemize}
+		\footnotesize{
+			\item Scatterplots are the workhorse of data visualization in social science.
+			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	
+	\frametitle{\bfseries}
+	\begin{figure}
+		\vspace{-.5em}
+		\includegraphics[width=0.9\linewidth]{Figure/perception-curves-1}
+		
+		\\
+		\tiny{Source: `Monstrous Costs’ by Nigel Holmes}
+		\label{fig:anscombe-1}
+	\end{figure}
+	\begin{itemize}
+		\footnotesize{
+			\item Scatterplots are the workhorse of data visualization in social science.
+			\item A scatterplot shows the relationship between two quantities, such as height and weight, age and income, or time and unemployment. }
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------%
+
+\begin{frame}
+	\section{}
+	\frametitle{\bfseries Variable Types in the Statistical Software}
+	
+	\begin{enumerate}
+		\item \texttt{int} stands for intergers
+		\item \texttt{dbl} stands for doubles, or we call real numbers
+		\item \texttt{chr} stands for character vectors, and strings
+		\item \texttt{dttm} stands for date-times (a date + a time)
+	\end{enumerate}
+
+At the same time, there are three other common types of variables
+	\begin{enumerate}
+		\item \texttt{lgl} stands for logical, vectors that contain only \texttt{TRUE} or \texttt{FALSE}
+		\item \texttt{fctr} stands for factors, which R uses to represent categorical variables with fixed possible values.
+		\item \texttt{date} stands for dates.
+	\end{enumerate}
+	
+\end{frame}
+%------------------------------------------------------------------%
+
+\end{document}
