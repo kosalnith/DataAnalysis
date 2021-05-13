@@ -1,1 +1,1 @@
-# data-visualization-in-r
+# Data Visualization for Social Science in R Programming
