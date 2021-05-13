@@ -1,3 +1,0 @@
-\babel@toc {nil}{}
-\beamer@sectionintoc {1}{Goals}{2}{0}{1}
-\beamer@sectionintoc {3}{Related Literature}{5}{0}{2}
