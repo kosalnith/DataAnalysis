@@ -11,8 +11,8 @@ library(dplyr)
 library(tidyverse)
 
 #import les données
-data1 <- read.xlsx(xlsxFile = "Data/migration1.xlsx", sheet = 1)
-data2 <- read.xlsx(xlsxFile = "Data/migration2.xlsx", sheet = 1)
+data1 <- read.xlsx(xlsxFile = "Data/malid1", sheet = 1)
+data2 <- read.xlsx(xlsxFile = "Data/malid2", sheet = 1)
 
 #choisie les variables
 myvars1<- c("id_03","id_04","ic_051","id_061","S10_11","TYPE_EDU","m104_01",
