@@ -13,8 +13,6 @@ library(dplyr)
 # Import the data from the Stata, SPSS, and SAS file with `haven` package 
 findata <- read_dta(file = "Data/micro_world.dta")
 
-view(findata)
-
 # Print the first ten rows of the dataset 
 findata
 
@@ -162,13 +160,15 @@ summary(fdata$finsources)
 # To remove all rows with NA values, we use na.omit() function.
 final <- na.omit(fdata)
 
+
+
 ### Aggregate the data at the country-year level
 
 ag <- fdata[c("account", "country", "age")] # make a subset with only the religion variable
 
 attach(ag)
 ag <- aggregate(account, by=list(country, age), FUN=mean, na.rm=TRUE)
-detach(agg)
+detach(ag)
 
 molten <- melt(ag,
                    id = c("Group.1", "Group.2"), na.rm=TRUE)
@@ -178,13 +178,7 @@ ggplot(molten) +
   theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
   facet_wrap(~Group.1)
 
-p <- ggplot(data = fdata)
-
-p <- ggplot(data = fdata,
-            mapping = aes(x = inc,
-                          y=account))
-p + geom_smooth()
-
+#-------------------------------------------------------------------------------
 
 ggplot(fdata,
        aes(x = finsources)) + 
@@ -199,31 +193,15 @@ ggplot(fdata,
 ggplot(data = fdata) + 
   geom_bar(mapping = aes(x = finsources))
 
-fdata$female = as.integer(data$female)
 
-fdata %>%
-  mutate(pop = as.double(pop),
-         gender = as.integer(gender),
-         educ = as.integer(educ),
-         account = as.integer(account),
-         borrowed = as.integer(borrowed),
-         finsources = as.integer(finsources)
-  )
+ggplot(data = fdata) + 
+  geom_bar(mapping = aes(x = gender))
 
+ggplot(data = fdata) + 
+  geom_bar(mapping = aes(x = account))
 
-
-data$fin2
-
-
-summary(data$educ) 
-
-
-plot(fdata$saving, fdata$account)
-
-p <-  ggplot(data = fdata,
-             mapping = aes(x = account,
-                           y = age,
-                           color = purple))
+ggplot(data = fdata) + 
+  geom_bar(mapping = aes(x = emp))
 
 
 
@@ -234,8 +212,8 @@ filter(d, economy == "Cambodia")
 
 
 # We can also use filter() for the comparison. R R provides the standard suite: 
-# >, >=, <, <=, != (not equal), and == (equal). Please remember that  & is “and”
-# | is “or”, and ! is “not”. 
+# >, >=, <, <=, != (not equal), and == (equal). Please remember that  & is and
+# | is or, and ! is not. 
 filter(findata, female == 1)
 a <- sum(findata$female == 1)
 
@@ -243,13 +221,6 @@ b <- sum(findata$female == 2)
 c <- a+b
 c
 
-ggplot(data = fdata) + 
-  geom_bar(mapping = aes(x = educ))
-
-ggplot(data = fdata) + 
-  geom_bar(mapping = aes(x = emp))
-
-data$educ
 
 filter(findata, educ == 3 | educ == 1)
 # A useful short-hand for this problem is x %in% y.

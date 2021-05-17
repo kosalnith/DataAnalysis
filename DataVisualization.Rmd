@@ -1,7 +1,7 @@
 ---
 title: "Data Visualization in R Programming: A Practical Introduction"
-author: "Nith Kosal"
-date: "May 12, 2021"
+author: "From Pro. Kieran Healy"
+
 output: pdf_document
 ---
 
@@ -514,7 +514,8 @@ p <- ggplot(data = gss_sm,
             mapping = aes(x = religion, color = religion))
 p + geom_bar()
 
-p <- ggplot(data = gss_sm,
+dat.clean<- na.omit(subset(gss_sm, select = religion))
+p <- ggplot(data = dat.clean,
             mapping = aes(x = religion, fill = religion))
 p + geom_bar() + guides(fill = FALSE)
 
