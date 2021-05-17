@@ -1,4 +1,0 @@
-"0","p <- ggplot(data = gapminder)
-"
-"2","Error in ggplot(data = gapminder) : object 'gapminder' not found
-"
