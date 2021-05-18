@@ -597,11 +597,14 @@ oh_wi <- c("OH", "WI")
 
 p <- ggplot(data = subset(midwest, subset = state %in% oh_wi),
             mapping = aes(x = percollege, fill = state))
-p + geom_histogram(alpha = 0.4, bins = 20)
+p + geom_histogram(alpha = 0.4, bins = 10)
+
+# The %in% operator is a convenient way to filter on more than one term 
+# in a variable when using subset().
 
 ```
 
-
+### Start with density format  
 ```{r density_1}
 
 p <- ggplot(data = midwest,
@@ -618,6 +621,10 @@ p <- ggplot(data = midwest,
             mapping = aes(x = area, fill = state, color = state))
 p + geom_density(alpha = 0.3)
 
+
+p <- ggplot(data = subset(midwest, subset = state %in% oh_wi),
+            mapping = aes(x = area, fill = state, color = state))
+p + geom_density(alpha = 0.3, mapping = (aes(y = ..scaled..)))
 ```
 
 ### Avoid transformations when necessary
@@ -668,6 +675,11 @@ rel_by_region <- gss_sm %>%
     mutate(freq = N / sum(N),
            pct = round((freq*100), 0))
 
+# We count up the number of observations for each value of religion within 
+# bigregion and puts them in a new variable named N.
+
+# Mutatemutate() the data by creating new variables at the current level of grouping.
+
 ```
 
 
@@ -698,6 +710,9 @@ p + geom_col(position = "dodge") +
     guides(fill = FALSE) + 
     coord_flip() + 
     facet_grid(~ bigregion)      
+
+# The coord_cartesian() function manages x- and y-axis 
+# The coord_flip() function switches the x and y axes after the plot is made.
 ```
 
 ## Continuous variables by category
