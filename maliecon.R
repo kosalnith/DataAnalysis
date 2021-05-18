@@ -10,7 +10,7 @@ library(leaflet)
 library(dplyr)
 library(tidyverse)
 
-#import les donn?es
+#import les données
 data1 <- read.xlsx(xlsxFile = "Data/malid1.xlsx", sheet = 1)
 data2 <- read.xlsx(xlsxFile = "Data/malid2.xlsx", sheet = 1)
 
