@@ -49,8 +49,8 @@ c(1, 2, 3, 1, 3, 2020, 2021)
 my_numbers <- c(1, 2, 3, 1, 3, 2020, 2021)
 
 futureforum_team <- c("Dara", "Soriya", "Sokhouy", "Kimly", "Heang", "Samnang")
-y <- 1:9
-
+y <- 1:2021
+y
 # call for object that we want to see
 futureforum_team
 
@@ -242,9 +242,11 @@ p <- ggplot(data = gapminder)
 ```
 
 ```{r 03-make-a-plot-4}
-p <- ggplot(data = gapminder,
+p <- ggplot(data = gapminder, 
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
+p + geom_point() 
+
 ```
 
 ```{r 03-make-a-plot-5, fig.cap='This empty plot has no geoms.', fig.width=8, fig.height=5}
@@ -262,7 +264,8 @@ p + geom_point()
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_smooth()
+p + geom_smooth() #+ theme_classic()
+
 
 ```
 
@@ -273,13 +276,15 @@ p <- ggplot(data = gapminder,
                           y=lifeExp))
 p + geom_point() + geom_smooth() 
 
+# gam: Generalized additive models with integrated smoothness estimation
+
 ```
 
 ```{r 03-make-a-plot-9, fig.cap='Life Expectancy vs GDP, points and an ill-advised linear fit.', fig.width=8, fig.height=5}
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth(method = "lm") 
+p + geom_point() + geom_smooth(method = "lm") # linear model
 ```
 
 
@@ -310,10 +315,13 @@ p + geom_point() +
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp,
-                          color = "purple"))
+                          color = "purple"))  
 p + geom_point() +
     geom_smooth(method = "loess") +
     scale_x_log10()
+
+# Local regression or local polynomial regression, also known as moving 
+# regression, is a generalization of moving average and polynomial regression.
 ```
 
 
@@ -332,9 +340,11 @@ p + geom_point(color = "purple") +
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp)) 
-p + geom_point(alpha = 0.3) +
+p + geom_point(alpha = .3) +
     geom_smooth(color = "orange", se = FALSE, size = 8, method = "lm") +
     scale_x_log10()
+
+# The result is that the standard error ribbon is not shown.
 ```
 
 
@@ -348,7 +358,6 @@ p + geom_point(alpha = 0.3) + geom_smooth(method = "gam") +
          subtitle = "Data points are country-years",
          caption = "Source: Gapminder.")
 ```
-
 
 
 ```{r 03-make-a-plot-16, fig.cap='Mapping the continent variable to the color aesthetic.', fig.width=8.5, fig.height=5}
@@ -447,7 +456,7 @@ p <- ggplot(data = gapminder,
 
 p + geom_line(mapping =  
               aes(group = country)) + 
-facet_wrap(~ continent)      
+facet_wrap(~ continent)      # The facet_wrap() function can take a series of arguments
 ```
 
 ```{r facet_polished, fig.height = 5, fig.width = 12, layout = 'l-page'}
@@ -460,7 +469,10 @@ p + geom_line(color="gray70",
     facet_wrap(~ continent, ncol = 5) +
     labs(x = "Year",
          y = "log GDP per capita",
-         title = "GDP per capita on Five Continents")      
+         title = "GDP per capita on Five Continents") 
+
+# The facet_wrap() function is best used when you want a series of small 
+# multiples based on a single categorical variable. 
 ```
 
 ```{r facet_grid}
@@ -468,7 +480,9 @@ p + geom_line(color="gray70",
 p <- ggplot(data = gss_sm,
             mapping = aes(x = age, y = childs))
 p + geom_point(alpha = 0.2) + geom_smooth() +
-    facet_grid(sex ~ race)
+    facet_grid(sex ~ race) # or ~ race + + degree or somewhat that you want. 
+
+# The facet_grid() use to cross-classify some data by two categorical variables. 
 
 ```
 
@@ -558,6 +572,13 @@ p + geom_bar(position = "dodge",
 ### Histograms and Density Plots 
 
 ```{r hist_1}
+
+p <- ggplot(data = gss_sm,
+            mapping = aes(x = religion))
+p + geom_bar(position = "dodge",
+             mapping = aes(y = ..prop.., group = bigregion)) +
+    facet_wrap(~ bigregion, ncol = 2)
+
 
 p <- ggplot(data = midwest,
             mapping = aes(x = area))
