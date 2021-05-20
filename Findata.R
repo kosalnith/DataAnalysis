@@ -31,6 +31,7 @@ dim(findata)
 
 # Show the names of the variable
 names(findata)
+labels(findata)
 
 # filter() allows you to subset observations based on their values.
 (fCambodia <- filter(findata, economy == "Cambodia"))
@@ -54,7 +55,7 @@ fdata <- fdata %>%
          "random" = "wpid_random", "gender" = "female", "inc" = "inc_q",
          "emp" = "emp_in", "account" = "fin2", "saving" = "fin15", 
          "borrowed" = "fin21", "finsources" = "fin25")
-)
+
 
 names(fdata)
 
