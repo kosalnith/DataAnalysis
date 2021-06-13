@@ -16,7 +16,8 @@ This is a partial list of various interesting and useful books that will be touc
 
 - Grolemund, G. and Wickham, H. (2016). [_R for Data Science:Import, Tidy, Transform, Visualize, and Model Data_](https://r4ds.had.co.nz/). O'Reilly Media, Inc.
 - Healy, K. (2018). [_Data Visualization: A Practical Introduction_](https://socviz.co/). Princeton University Press.
-- Thulin, M. (2021). [_Modern Statistics with R: From Wrangling and Exploring Data to Inference and Predictive Modelling_](http://modernstatisticswithr.com/). Northern Hemisphere. 
+- Thulin, M. (2021). [_Modern Statistics with R: From Wrangling and Exploring Data to Inference and Predictive Modelling_](http://modernstatisticswithr.com/). Northern Hemisphere.
+- Maindonald, J. and Braun, W.J. (2010).[_Data Analysis and Graphics Using R – an Example-Based Approach_](https://maths-people.anu.edu.au/~johnm/r-book/daagur3.html). 3rd ed, Cambridge University Press.   
 
 
 
