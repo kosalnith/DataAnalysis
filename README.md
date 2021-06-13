@@ -10,3 +10,9 @@ This course is primarily designed for the 2021 Young Research Fellow at Future F
 * [**Maliecon Example**](https://github.com/nithkosal/DataVisualization/blob/main/Codes/maliecon.R), is a code for a research project on economic development in Mali for the master thesiss which takes from [Phay Thounimith](https://github.com/nimithphay). I would like to point out that he used French in that code.
 * [**Slide**](https://github.com/nithkosal/DataVisualization/blob/main/Slide.pdf), a brief description of the purpose of the sharing section and something should be avoided when plotting.
 * [**Problem Sets**](https://github.com/nithkosal/DataVisualization/blob/main/Problemsets.pdf), is a exercise file for vectors, matrices and data transformations. More exercises in this file come from the book of [R for Data Science](https://r4ds.had.co.nz/index.html) by Garrett Grolemund and Hadley Wickham, come from Programming Exercises for R by Nastasiya F. Grinberg and Robin J. Reed, and from [Data Analysis and Graphics Using R – an Example-Based Approach](https://maths-people.anu.edu.au/~johnm/r-book/daagur3.html) by John Maindonald and W. John Braun.  
+
+## Main References
+This is a partial list of various interesting and useful books that will be touched during the course.
+
+Kieran Healy (2018). [_Data Visualization: A Practical Introduction_](https://socviz.co/). Princeton University Press.
+
