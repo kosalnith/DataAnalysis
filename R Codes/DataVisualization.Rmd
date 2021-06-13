@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Data Visualization Notes
 
-This is a outcome in PDF file from RMarkdown project template to accompany training with *Data Visualization*. You can use it to take notes, write your code, and produce a good-looking, reproducible document that records the work you have done. At the very top of the file is a section of *metadata*, or information about what the file is and what it does. The metadata is delimited by three dashes at the start and another three at the end. You should change the title, author, and date to the values that suit you. Keep the `output` line as it is for now, however. Each line in the metadata has a structure. First the *key* ("title", "author", etc), then a colon, and then the *value* associated with the key.  
+## This is a outcome in PDF file from RMarkdown project template to accompany training with *Data Visualization*. You can use it to take notes, write your code, and produce a good-looking, reproducible document that records the work you have done. At the very top of the file is a section of *metadata*, or information about what the file is and what it does. The metadata is delimited by three dashes at the start and another three at the end. You should change the title, author, and date to the values that suit you. Keep the `output` line as it is for now, however. Each line in the metadata has a structure. First the *key* ("title", "author", etc), then a colon, and then the *value* associated with the key.  
 
 ## This Document is an RMarkdown File
 
@@ -177,9 +177,9 @@ So let we go with some datasets on R
 mtcars
 
 mymtcars <- mtcars
-
+mymtcar
 class(mymtcars)
-
+class(mymtcars$mpg)
 # list the variables in `mymtcars`
 names(mymtcars)
 
@@ -192,12 +192,16 @@ str(mymtcars)
 # print first 10 rows of `mymtcars`
 head(mymtcars, n=7)
 
+head(mymtcars$mpg, n=12)
+
 # print last 5 rows of `mymtcars`
-tail(mymtcars, n=4)
+tail(mymtcars, n=5)
+
 
 # we can also create plots:
 plot(mymtcars$mpg, mtcars$disp)
 
+summary(mymtcars$mpg)
 ```
 
 Now, we try with another example and use the dataset from link
@@ -217,6 +221,8 @@ organs <- read.csv(file = "Data/organdonation.csv")
 
 # tibble package to show only the first 10 of the dataset  
 library(tibble) 
+
+organs
 as_tibble(organs)
 ```
 
@@ -235,6 +241,7 @@ library(socviz)
 
 ```{r gapminder-example-1}
 gapminder
+g <- gapminder
 ```
 
 ```{r 03-make-a-plot-3}
@@ -246,6 +253,7 @@ p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
 p + geom_point() 
+
 
 ```
 
@@ -264,7 +272,7 @@ p + geom_point()
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_smooth() #+ theme_classic()
+p + geom_smooth() + theme_classic()
 
 
 ```
@@ -340,8 +348,8 @@ p + geom_point(color = "purple") +
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp)) 
-p + geom_point(alpha = .3) +
-    geom_smooth(color = "orange", se = FALSE, size = 8, method = "lm") +
+p + geom_point(alpha = .1) +
+    geom_smooth(color = "orange", se = FALSE, size = 3, method = "lm") +
     scale_x_log10()
 
 # The result is that the standard error ribbon is not shown.
