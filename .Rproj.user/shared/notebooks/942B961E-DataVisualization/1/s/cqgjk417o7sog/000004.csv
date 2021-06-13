@@ -1,0 +1,8 @@
+"0","
+p <- ggplot(data = by_country,
+            mapping = aes(x = donors_mean,
+                          y = reorder(country, donors_mean)))
+"
+"2","Error in ggplot(data = by_country, mapping = aes(x = donors_mean, y = reorder(country,  : 
+  object 'by_country' not found
+"

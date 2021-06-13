@@ -1,0 +1,1 @@
+{"frames":[{"func":"ggplot(data = by_country, mapping = aes(x = donors_mean, y = reorder(country, \n    donors_mean)))","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in ggplot(data = by_country, mapping = aes(x = donors_mean, y = reorder(country,  : \n  object 'by_country' not found\n"}

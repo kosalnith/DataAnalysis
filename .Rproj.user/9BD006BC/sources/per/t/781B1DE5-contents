@@ -1,0 +1,574 @@
+
+## Chapter 1: A Brief Introduction to R 
+
+## Sec 1.1: An Overview of R 
+## ss 1.1.1: A Short R Session 
+##                      { R} must be installed! 
+##             Using the console (or command line) window 
+2+2 
+ 
+
+2*3*4*5          # * denotes 'multiply' 
+sqrt(10)         # the square root of 10 
+pi               # R knows about pi 
+2*pi*6378        # Circumference of earth at equator (km) 
+
+3*4^ 
+2 
+
+3*4^2; (3*4)^2 
+
+##                 Entry of data at the command line 
+Year <- c(1800, 1850, 1900, 1950, 2000) 
+Carbon <- c(8, 54, 534, 1630, 6611) 
+## Now plot Carbon as a function of Year 
+plot(Carbon ~ Year, pch=16) 
+
+##              Collection of vectors into a data frame 
+fossilfuel <- data.frame(year=Year, carbon=Carbon) 
+fossilfuel         # Display the contents of the data frame. 
+
+rm(Year, Carbon)     # The rm() function removes unwanted objects 
+
+plot(carbon ~ year, data=fossilfuel, pch=16) 
+
+##        The R Commander Graphical User Interface (GUI) to R 
+##      The working directory and the contents of the workspace 
+getwd() 
+
+ls() 
+
+##                           Quitting { R} 
+# q() 
+
+##                      Installation of packages 
+install.packages("DAAG") 
+install.packages(c("magic", "schoolmath"), dependencies=TRUE) 
+
+## ss 1.1.2: The uses of R 
+##   { R} offers an extensive collection of functions and abilities 
+range(fossilfuel$carbon) 
+
+## 4 cities 
+fourcities <- c("Toronto", "Canberra", "New York", "London") 
+## display in alphabetical order 
+sort(fourcities) 
+## Find the number of characters in "Toronto" 
+nchar("Toronto") 
+ 
+## Find the number of characters in all four city names at once 
+nchar(fourcities) 
+
+##        { R} will give numerical or graphical data summaries 
+summary(cars) 
+
+hist(cars$speed) 
+
+##            { R} is an interactive programming language 
+celsius <- (0:4)*10 
+fahrenheit <- 9/5*celsius+32 
+conversion <- data.frame(Celsius=celsius, Fahrenheit=fahrenheit) 
+print(conversion) 
+
+## ss 1.1.3: Online Help 
+?plot                # Equivalent to help(plot) 
+
+apropos("sort")        # Try, also, apropos ("sor") 
+ # List all functions where "sort" is part of the name  
+help.search("sort")    # Note that the argument is 'sort' 
+ # List functions with 'sort' in the help page title or as an alias 
+
+example(image) 
+par(ask=FALSE)       # turn off the prompts  
+
+##            Wide-ranging information access and searches 
+##                 Help in finding the right package 
+## ss 1.1.4: Input of data from a file 
+library(DAAG)
+datafile('fuel')   ## Places file in working directory,
+                   ## ready for input.
+fossilfuel <- read.table("fuel.txt", header=TRUE) 
+
+write.csv(fossilfuel, file='fuel.csv')
+fossilfuel <- read.table("fuel.csv", header=TRUE, sep=",") 
+
+## ss 1.1.5: R Packages 
+library(DAAG) 
+sessionInfo() 
+
+##               Data sets that accompany { R} packages 
+data(package="datasets")  # Specify 'package', not 'library'. 
+
+## ss 1.1.6: Further steps in learning R 
+
+## Sec 1.2: Vectors, Factors and Univariate Time Series 
+## ss 1.2.1: Vectors 
+c(2, 3, 5, 2, 7, 1) 
+c(T, F, F, F, T, T, F) 
+c("Canberra", "Sydney", "Canberra", "Sydney") 
+
+## ss 1.2.2: Concatenation -- joining vector objects 
+x <- c(2, 3, 5, 2, 7, 1)  # x then holds values 2, 3, 5, 2, 7, 1 
+x 
+y <- c(10, 15, 12) 
+y 
+z <- c(x, y) 
+z 
+
+## ss 1.2.3: The use of relational operators to compare vector elements 
+x <- c(3, 11, 8, 15, 12) 
+x > 8 
+x != 8 
+
+## ss 1.2.4: The use of square brackets to extract subsets of vectors 
+x <- c(3, 11, 8, 15, 12)  
+x[c(2,4)]                 # Elements in positions 2  
+
+x[-c(2,3)]         # Remove the elements in positions 2 and 3 
+
+x > 10 
+x[x > 10] 
+
+heights <- c(Andreas=178, John=185, Jeff=183) 
+heights[c("John","Jeff")] 
+
+## ss 1.2.5: Patterned data 
+5:15 
+
+seq(from=5, to=22, by=3)  # The first value is 5.  The final 
+
+rep(c(2,3,5), 4) 
+
+c(rep("female", 3), rep("male", 2)) 
+
+## ss 1.2.6: Missing values 
+library(DAAG) 
+nbranch <- subset(rainforest, species=="Acacia mabellae")$branch 
+nbranch            # Number of small branches (2cm or less) 
+
+mean(nbranch) 
+mean(nbranch, na.rm=TRUE) 
+
+NA == 35 
+
+## Replace all NAs by -999  
+nbranch[is.na(nbranch)] <- -999 
+nbranch 
+## There is now no protection against use of the -999 values as 
+## if they were legitimate numeric values 
+mean(nbranch) 
+
+## ss 1.2.7: Factors 
+## Create character vector 
+gender <- c(rep("female",691), rep("male",692)) 
+levels(gender)     # For a character vector, this returns NULL 
+## From character vector, create factor 
+gender <- factor(gender) 
+levels(gender) 
+
+levels(gender) 
+
+gender <- factor(gender, levels=c("male", "female")) 
+
+## ss 1.2.8: Time series 
+## Footnote Code
+## Alternatively, obtain from data frame jobs (DAAG) 
+library(DAAG) 
+numjobs <- jobs$Prairies 
+
+numjobs <- c(982,981,984,982,981,983,983,983,983,979,973,979, 
+             974,981,985,987,986,980,983,983,988,994,990,999) 
+
+numjobs <- ts(numjobs, start=1995, frequency = 12) 
+plot(numjobs) 
+
+first15 <- window(numjobs, start=1995.75, end=1996.25) 
+
+
+## Sec 1.3: Data Frames and Matrices 
+Cars93.summary 
+
+Cars93.summary <- edit(Cars93.summary) 
+
+##    Displaying the first few, or last few, rows of a data frame 
+head(Cars93.summary, n=3)  # Display the first 3 rows (the default is 6) 
+ # . . . 
+
+##                        Column and row names 
+rownames(Cars93.summary)   # Extract names of rows       
+colnames(Cars93.summary)   # Extract column names 
+
+## names(Cars93.summary)[3] <- "numCars" 
+## names(Cars93.summary) <- c("minPass","maxPass","numCars","code") 
+
+##                       Subsets of data frames 
+Cars93.summary[1:3, 2:3]   # Rows 1-3 and columns 2-3 
+Cars93.summary[, 2:3]      # Columns 2-3 (all rows) 
+Cars93.summary[, c("No.of.cars", "abbrev")]   # Cols 2-3, by name 
+Cars93.summary[, -c(2,3)]  # omit columns 2 and 3 
+
+subset(Cars93.summary,  
+       subset=c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE)) 
+
+##             Data frames are a specialized type of list 
+## Cities with more than 2.5 million inhabitants 
+USACanada <- list(USACities=c("NY", "LA", "Chicago"),  
+                  CanadaCities=c("Toronto", "Montreal"), 
+                  millionsPop=c(USA=305.9, Canada=31.6)) 
+ 
+USACanada 
+
+## ss 1.3.1: Accessing the columns of data frames -- {with()} and {attach()} 
+## cfseal (DAAG) has data on Cape Fur seals 
+with(cfseal, c(mean(weight), median(weight))) 
+
+with(pair65,       # stretch of rubber bands, from DAAG 
+  {lenchange <- heated-ambient 
+   c(mean(lenchange), median(lenchange)) 
+}) 
+
+## year 
+attach(fossilfuel)  # Attach data frame fossilfuel 
+year 
+detach(fossilfuel)  # Detach data frame 
+
+## ss 1.3.2: Aggregation, stacking and unstacking 
+chickwtAvs <- with(chickwts,  
+                   aggregate(weight, by=list(feed), mean)) 
+names(chickwtAvs) <- c("Feed Group", "Mean Weight") 
+chickwtAvs  
+
+library(DAAG) 
+head(jobs,3) 
+  # . . . 
+Jobs <- stack(jobs, select = 1:6)  
+  # stack() concatenates selected data frame columns into a 
+  # single column named "values", & adds a factor named "ind" 
+  # that has the names of the concatenated columns as levels. 
+head(Jobs,3) 
+  # . . . 
+
+## ss 1.3.3: *~Data frames and matrices 
+fossilfuelmat <- matrix(c(1800, 1850, 1900, 1950, 2000,  
+                          8, 54, 534, 1630, 6611), nrow=5) 
+colnames(fossilfuel) <- c("year", "carbon") 
+
+fossilfuelmat <- cbind(year=c(1800, 1850, 1900, 1950, 2000), 
+                       carbon=c(8, 54, 534, 1630, 6611)) 
+
+
+## Sec 1.4: Functions, Operators and Loops 
+## ss 1.4.1: Common useful built-in functions 
+# all()       # returns TRUE if all values are TRUE 
+# any()       # returns TRUE if any values are TRUE 
+# args()      # information on the arguments to a function 
+# cat()       # prints multiple objects, one after the other 
+# cumprod()   # cumulative product 
+# cumsum()    # cumulative sum 
+# diff()      # form vector of first differences  
+#             # N. B. diff(x) has one less element than x 
+# history()   # displays previous commands used 
+# is.factor() # returns TRUE if the argument is a factor 
+# is.na()     # returns TRUE if the argument is an NA 
+#             # NB also is.logical(), is.matrix(), etc. 
+# length()    # number of elements in a vector or of a list 
+# ls()        # list names of objects in the workspace 
+# mean()      # mean of the elements of a vector 
+# median()    # median of the elements of a vector 
+# order()     # x[order(x)] sorts x (by default, NAs are last) 
+# print()     # prints a single R object 
+# range()     # minimum and maximum value elements of vector 
+# sort()      # sort elements into order, by default omitting NAs 
+# rev()       # reverse the order of vector elements 
+# str()       # information on an R object 
+# unique()    # form the vector of distinct values 
+# which()     # locates 'TRUE' indices of logical vectors  
+# which.max() # locates (first) maximum of a numeric vector 
+# which.min() # locates (first) minimum of a numeric vector 
+# with()      # do computation using columns of specified data frame 
+
+##                       The {print()} function 
+x <- 2    # Assign to x the value 2; nothing is printed 
+x         # Equivalent to print(x) 
+x*5       # Equivalent to print(x*5) 
+
+(x <- 2)  # Equivalent to: x <- 2; print(x) 
+
+##      Calculations in parallel across all elements of a vector 
+##        Data summary functions -- {table()}and { {sapply()} 
+## table()              # Form a table of counts 
+## xtabs()              # Form a table of totals 
+
+library(DAAG)      # tinting is from DAAG 
+table(Sex=tinting$sex, AgeGroup=tinting$agegp) 
+
+sapply(jobs[, -7], range) 
+
+##                         Utility functions 
+ls(pattern="p")      # List object names that include the letter "p" 
+ls(pattern="^p")     # List object names that start with "p" 
+
+## ss 1.4.2: Generic functions, and the class of an object 
+## ss 1.4.3: User-written functions 
+mean.and.sd <- function(x){ 
+    av <- mean(x) 
+    sdev <- sd(x) 
+    c(mean=av, SD=sdev) 
+    } 
+
+distance <- c(148,182,173,166,109,141,166) 
+mean.and.sd(distance) 
+
+mean.and.sd <- function(x = rnorm(10)){ 
+    av <- mean(x) 
+    sdev <- sd(x) 
+    c(mean=av, SD=sdev) 
+    } 
+
+mean.and.sd() 
+
+##                     The structure of functions 
+## Footnote Code
+## Thus, to return the mean, SD and name of the input vector 
+## replace c(mean=av, SD=sdev) by 
+## list(mean=av, SD=sdev, dataset = deparse(substitute(x))) 
+
+## ss 1.4.4: If statements 
+Carbon <- fossilfuel$carbon 
+if (mean(Carbon) > median(Carbon)) print("Mean > Median") else  
+    print("Median <= Mean") 
+
+dist <- c(148, 182, 173, 166, 109, 141, 166) 
+dist.sort <- if (dist[1] < 150) 
+                sort(dist, decreasing=TRUE) else sort(dist) 
+dist.sort 
+
+## ss 1.4.5: Selection and matching 
+x <- rep(1:5, rep(3,5)) 
+x[x %in% c(2,4)] 
+
+match(x, c(2,4), nomatch=0) 
+
+## ss 1.4.6: Functions for working with missing values 
+##         Identification of rows that include missing values 
+## Which rows have missing values: data frame science (DAAG) 
+science[!complete.cases(science), ]   
+
+dim(science) 
+Science <- na.omit(science) 
+dim(Science) 
+
+## ss 1.4.7: \kern-4pt* Looping 
+for (i in 1:3) print(i) 
+
+## Relative population increase in Australian states: 1917-1997 
+## Data frame austpop (DAAG) 
+relGrowth <- numeric(8)   # numeric(8) creates a numeric vector 
+                          # with 8 elements, all set equal to 0 
+for (j in seq(from=2, to=9)) { 
+    relGrowth[j-1] <- (austpop[9, j]-austpop[1, j])/ 
+    austpop[1, j]} 
+names(relGrowth) <- names(austpop[c(-1,-10)]) 
+  # We have used names() to name the elements of relGrowth 
+relGrowth          # Output is with options(digits=3) 
+
+
+## Sec 1.5: Graphics in R 
+demo(graphics) 
+
+## ss 1.5.1: The function {plot( )} and allied functions 
+plot(Brainwt ~ Bodywt, data=primates)  # plot(y ~ x) syntax  
+
+with(primates, plot(Bodywt, Brainwt))    # plot(x, y) syntax  
+
+##           Adding points, lines, text and axis annotation 
+## Place labels on points 
+plot(Brainwt ~ Bodywt, xlim=c(0, 300), data=primates) 
+  # Specify xlim so that there is room for the labels 
+with(primates,  
+     text(Brainwt ~ Bodywt, labels=row.names(primates), pos=4)) 
+  # pos=4 places text to the right of the points. Other 
+  # possibilities are: 1: below; 2: to the left; 3: above 
+
+## Footnote Code
+## Plot Brainwt vs Bodywt, primates data frame 
+plot(Brainwt ~ Bodywt, xlim=c(0, 300), ylim=c(0,1500), data=primates) 
+yoff <- c(-.125,0,0,.125,0)*par()$cxy[2] 
+with(primates, text(x=Bodywt, y=Brainwt+yoff, labels=row.names(primates), pos=4)) 
+
+##                 Fine control -- parameter settings 
+oldpar <- par(cex=1.25)    
+# Use par(oldpar) to restore previous settings 
+
+## ss 1.5.2: The use of color 
+theta <- (1:50)*0.92 
+plot(theta, sin(theta), col=1:50, pch=16, cex=4) 
+points(theta, cos(theta), col=51:100, pch=15, cex=4) 
+palette()            # Names of the colors in the current palette 
+
+plot(theta, sin(theta), col=colors()[1:50], pch=16, cex=4) 
+points(theta, cos(theta), col=colors()[51:100], pch=15, cex=4) 
+
+## ss 1.5.3: The importance of aspect ratio 
+## Plot sin(theta) vs theta, at regularly spaced values of theta 
+## sin() expects angles to be in radians 
+ # multiply angles in degrees by pi/180 to get radians 
+plot((0:20)*pi/10, sin((0:20)*pi/10)) 
+plot((1:50)*0.92, sin((1:50)*0.92)) 
+
+par(mfrow=c(3,1))    # Gives a 3 by 1 layout of plots 
+plot((1:50)*0.92, sin((1:50)*0.92)) 
+par(mfrow=c(1,1)) 
+
+## ss 1.5.4: Dimensions and other settings for graphics devices 
+## ss 1.5.5: The plotting of expressions and mathematical symbols 
+symbols(x=1.5, y=0, circles=1.2, xlim=c(0,3), ylim=c(-1.5,1.5), 
+        bg="gray", inches=FALSE)  
+  # inches=FALSE ensures that radius is in x-axis units 
+text(1.5, 0.5, expression("Area" == pi*phantom("'")*italic(r)^2)) 
+  # Use '==' to insert '='. 
+  # Text or symbols that appear either side of '*' are juxtaposed. 
+  # Notice the use of phantom("'") to insert a small space. 
+
+## Footnote Code
+## To add the double-headed arrow and associated label, specify: 
+arrows(1.5, 0, 2.7, 0, length=.1, code=3)   # code=3: arrows at both ends 
+  # length is the length of the arrow head (in inches!) 
+text(2.1, -strheight("R"), expression(italic(r) == 1.2)) 
+
+## ss 1.5.6: Identification and location on the figure region 
+plot(Brainwt ~ Bodywt, data=primates) 
+with(primates, 
+     identify(Brainwt ~ Bodywt, labels=row.names(primates), n=2)) 
+  # Now click near 2 plotted points 
+
+## ss 1.5.7: Plot methods for objects other than vectors 
+## Use plot() with data frame trees (datasets) 
+plot(trees)          # Gives a 3 x 3 layout of pairwise 
+                     # scatterplots among the three variables 
+
+## ss 1.5.8: Lattice (trellis) Graphics 
+##  Lattice graphics versus base graphics -- {xyplot()} versus {plot()} 
+## Plot Brainwt vs Bodywt, data frame primates (DAAG) 
+plot(Brainwt ~ Bodywt, data=primates)       # base graphics 
+ # 'base' graphics use the abilities of the graphics package 
+library(lattice) 
+xyplot(Brainwt ~ Bodywt, data=primates)     # lattice 
+
+invisible(plot(Brainwt ~ Bodywt, data=primates))     # Graph appears 
+invisible(xyplot(Brainwt ~ Bodywt, data=primates))   # No graph 
+
+print(xyplot(ACT ~ year, data=austpop)) 
+
+##           Panels of scatterplots -- the use of xyplot() 
+trellis.device(color=FALSE) 
+xyplot(ht ~ wt | sport, groups=sex, pch=c(4,1), aspect=1, data=ais, 
+       auto.key=list(columns=2), subset=sport%in%c("Row","Swim")) 
+dev.off()            # Close device 
+trellis.device()     # Start new device, by default with color=TRUE 
+
+##                    Plotting columns in parallel 
+xyplot(Prairies+Atlantic ~ Date, outer=TRUE, data=jobs) 
+
+##                     Selected lattice functions 
+# dotplot(factor ~ numeric,..)   # 1-dim. Display 
+# stripplot(factor ~ numeric,..) # 1-dim. Display 
+# barchart(character ~ numeric,..) 
+# histogram( ~ numeric,..) 
+# densityplot( ~ numeric,..)     # Density plot 
+# bwplot(factor ~ numeric,..)    # Box and whisker plot 
+# qqmath(factor ~ numeric,..)    # normal probability plots 
+# splom( ~ dataframe,..)         # Scatterplot matrix  
+# parallel( ~ dataframe,..)      # Parallel coordinate plots 
+# cloud(numeric ~ numeric * numeric, ...)      # 3D surface 
+# wireframe(numeric ~ numeric * numeric, ...)  # 3D scatterplot 
+
+## ss 1.5.9: Good and bad graphs 
+## Footnote Code
+## Example of plotting with different shades of gray 
+plot(1:4, 1:4, pch=16, col=c("gray20","gray40","gray60","gray80"), cex=3) 
+
+## ss 1.5.10: Further information on graphics 
+
+## Sec 1.6: Additional Points on the Use of R 
+##                  *Workspace management strategies 
+##                  Forward slashes and backslashes 
+##           Setting the number of decimal places in output 
+sqrt(10) 
+options(digits=2)  # Change until further notice, 
+sqrt(10) 
+
+##                       Other option settings 
+##                          Cosmetic issues 
+##             \kern-4pt*\, Common sources of difficulty 
+##                    Variable names in data sets 
+
+## Sec 1.7: Recap 
+(x <- 2)     # Equivalent to: x <- 2; print(x) 
+
+
+## Sec 1.8: Further Reading and Study 
+attach(Manitoba.lakes) 
+plot(log2(area) ~ elevation, pch=16, xlim=c(170,280)) 
+  # NB: Doubling the area increases log2(area) by 1.0 
+text(log2(area) ~ elevation,  
+     labels=row.names(Manitoba.lakes), pos=4) 
+text(log2(area) ~ elevation, labels=area, pos=2) 
+title("Manitoba's Largest Lakes") 
+detach(Manitoba.lakes) 
+
+rep(c(2,3,5), c(4,3,2)) 
+
+rep(c(2,3,5), 4:2) 
+
+1000*((1+0.075)^5 - 1)  # Interest on $1000, compounded 
+                        # annually at 7.5% p.a. for five years 
+
+gender <- factor(c(rep("female", 91), rep("male", 92))) 
+table(gender) 
+gender <- factor(gender, levels=c("male", "female")) 
+table(gender) 
+gender <- factor(gender, levels=c("Male", "female"))  
+                     # Note the mistake: "Male" should be "male" 
+table(gender) 
+table(gender, exclude=NULL) 
+rm(gender)           # Remove gender 
+
+par(mfrow=c(2,2))    # 2 by 2 layout on the page 
+library(MASS)        # Animals is in the MASS package 
+plot(brain ~ body, data=Animals) 
+plot(sqrt(brain) ~ sqrt(body), data=Animals) 
+plot(I(brain^0.1) ~ I(body^0.1), data=Animals) 
+  # I() forces its argument to be treated "as is" 
+plot(log(brain) ~ log(body), data=Animals) 
+par(mfrow=c(1,1))    # Restore to 1 figure per page 
+
+plot(BDI ~ age, data=socsupport) 
+plot(BDI ~ unclass(age), data=socsupport) 
+
+gender1 <- with(socsupport, abbreviate(gender, 1)) 
+table(gender1)       # Examine the result  
+country3 <-  with(socsupport, abbreviate(country, 3)) 
+table(country3)      # Examine the result  
+
+num <-  with(socsupport, seq(along=gender))   # Generate row numbers  
+lab <- paste(gender1, country3, num, sep=":") 
+
+x <-  c(8, 54, 534, 1630, 6611) 
+seq(1, length(x)) 
+seq(along=x) 
+
+head(vlt, 4)       # first few rows of vlt 
+  # . . . 
+
+vltcv <- stack(vlt[, 1:3]) 
+head(vltcv)          # first few rows of vltcv 
+table(vltcv$values, vltcv$ind) 
+  # More cryptically, table(vltcv) gives the same result.  
+
+oldpar <- par(mfrow=c(2,4)) 
+for (i in 2:9){ 
+plot(austpop[, 1], log(austpop[, i]), xlab="Year",  
+     ylab=names(austpop)[i], pch=16, ylim=c(0,10))} 
+par(oldpar) 
+
