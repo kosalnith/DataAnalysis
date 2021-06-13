@@ -1,4 +1,4 @@
-# Data Visualization for Social Science 
+# Data Analysis for Social Science 
 
 This repository is an sample code of the data import, data visualization, data transformation and data export in the R programming. It also used for a sharing session at the 2021 Young Research Fellow Seminar. 
 
