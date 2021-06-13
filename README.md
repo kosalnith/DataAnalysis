@@ -14,5 +14,7 @@ This course is primarily designed for the 2021 Young Research Fellow at Future F
 ## Main References
 This is a partial list of various interesting and useful books that will be touched during the course.
 
-Kieran Healy (2018). [_Data Visualization: A Practical Introduction_](https://socviz.co/). Princeton University Press.
+Healy, K. (2018). [_Data Visualization: A Practical Introduction_](https://socviz.co/). Princeton University Press.
+Grolemund, G. and Wickham, H. (2016). [_R for Data Science:Import, Tidy, Transform, Visualize, and Model Data_](https://r4ds.had.co.nz/). O'Reilly Media, Inc.
+
 
