@@ -241,32 +241,178 @@
 	 \item Create a table that gives, for each species represented in the data frame \texttt{rainforest} (DAAG package), the number of values of branch that are NAs, and the total number of cases.
 	 [Hint: Use either \texttt{!is.na()} or \texttt{complete.cases()} to identify NAs.]
 	 
-	 \item Create a data frame called Manitoba.lakes that contains the lake?s elevation (in meters
-	 above sea level) and area (in square kilometers) as listed below. Assign the names of the lakes
-	 using the row.names() function.
+	 \item Create a data frame called \texttt{Manitoba.lakes} that contains the lake?s elevation (in meters  above sea level) and area (in square kilometers) as listed below. Assign the names of the lakes
+	 using the \texttt{row.names()} function.
 \end{enumerate}
 
 %------------------------------------------------------------------
 
-\subsection*{Problem 4: Reading the dataset into R}
+%------------------------------------------------------------------
+
+\subsection*{Problem 4: Data transformations}
+\textbf{Filter rows with \texttt{filter()}}
+
 \begin{enumerate}
-	\item Read the dataset in Excel into R. 
-	\item Reading the dataset in cvs file into R. 
-	\item Reading the dataset in Stata file into R. 
-	\item Reading the dataset in SPSS file into R. 
+	\item Use \texttt{flights} data frame in the \texttt{nycflights13} library and use \texttt{tidyverse} package. Find all flights that:
+	
+	\begin{enumerate}
+		\item Had an arrival delay of two or more hours. To do so, you should find the variable that denote as an arrival delay.
+		\item Show the flights (\texttt{dest} variable) that flew to Houston where the destination is either \texttt{``IAH''} or \texttt{``HOU''}.
+		\item Were operated by United, American, or Delta.
+		\item Departed in summer (July, August, and September).
+		\item Arrived more than two hours late, but didn't leave late.
+		\item Were delayed by at least an hour, but made up over 30 minutes in flight. 
+		\item Departed between midnight and 6am (inclusive).
+	\end{enumerate}
+		
+	\item In the \texttt{month} variable of the \texttt{flights} data frame, please show departed in summer (month $>= 7$ \& month $<= 10$) using the \texttt{between()} function.	
+	
+	\item How many flights have a missing \texttt{dep\_time} of the \texttt{flights} data frame? What other variables are missing? What might these rows represent?
+	
+	\item Why is \texttt{NA\textasciicircum 0} not missing? Why is \texttt{NA | TRUE} not missing? Why is \texttt{FALSE \& NA} not missing? Can you figure out the general rule? (\texttt{NA * 0} is a tricky counterexample!)
+
+\end{enumerate}
+%------------------------------------------------------------------
+\noindent \textbf{Arrange rows with \texttt{arrange()}}
+
+\begin{enumerate}
+	\item Continuing the \texttt{flights} data frame, how could you use \texttt{arrange()} to sort all missing values to the start? (Hint: use \texttt{is.na()}).
+	
+	\item Sort \texttt{flights} to find the most delayed flights. Find the flights that left earliest.
+	
+	\item Sort \texttt{flights} to find the fastest (the highest speed) flights.
+	
+	\item Which flights traveled the farthest? Which traveled the shortest?
+
+\end{enumerate}
+%------------------------------------------------------------------
+
+\noindent \textbf{Select columns with \texttt{select()}}
+
+\begin{enumerate}
+	\item Please select \texttt{dep\_time}, \texttt{dep\_delay}, \texttt{arr\_time}, and \texttt{arr\_delay} from \texttt{flights} data frame.
+	
+	\item What happens if you include the name of a variable multiple times in a \texttt{select()} call?
+	
+	\item What does the \texttt{one\_of()} function do? Why might it be helpful in conjunction with this vector?
+	
+	\texttt{vars <- c(``year'', ``month'', ``day'', ``dep\_delay'', ``arr\_delay'')}
+	
+	\item Does the result of running the following code surprise you? How do the select helpers deal with case by default? How can you change that default?
+	
+	\texttt{select(flights, contains(``TIME''))}
+	
+\end{enumerate}
+%------------------------------------------------------------------
+
+\noindent \textbf{Add new variables with \texttt{mutate()}}
+
+\begin{enumerate}
+	\item Currently \texttt{dep\_time} and \texttt{sched\_dep\_time} are convenient to look at, but hard to compute with because they're not really continuous numbers. Convert them to a more convenient representation of number of minutes since midnight.
+	
+	\item Compare \texttt{air\_time} with \texttt{arr\_time - dep\_time}. What do you expect to see? What do you see? What do you need to do to fix it?
+	
+	\item Compare \texttt{dep\_time}, \texttt{sched\_dep\_time}, and \texttt{dep\_delay}. How would you expect those three numbers to be related?
+	
+	\item Find the 10 most delayed flights using a ranking function. How do you want to handle ties? Carefully read the documentation for \texttt{min\_rank()}.
+	
+	\item What does \texttt{1:3 + 1:10} return? Why?
+	
+	\item What trigonometric functions does R provide?
+	
+\end{enumerate}
+%------------------------------------------------------------------
+
+\noindent \textbf{Grouped summaries with \texttt{summarise()}}
+
+\begin{enumerate}
+	\item Come up with another approach that will give you the same output as \texttt{not\_cancelled \%>\% count(dest)} and \texttt{not\_cancelled \%>\% count(tailnum, wt = distance)} (without using \texttt{count()}).
+	
+	\item Our definition of canceled flights (\texttt{is.na(dep\_delay) | is.na(arr\_delay)}) is slightly sub-optimal. Why? Which is the most important column?
+	
+	\item Look at the number of canceled flights per day. Is there a pattern? Is the proportion of canceled flights related to the average delay?
+	
+	\item Which carrier has the worst delays? Challenge: can you disentangle the effects of bad airports vs. bad carriers? Why/why not? (Hint: think about flights \texttt{\%>\% group\_by(carrier, dest) \%>\% summarise(n())})
+	
+	\item What does the sort argument to \texttt{count()} do? When might you use it?
+	
+\end{enumerate}
+%------------------------------------------------------------------
+
+\noindent \textbf{Grouped mutates (and filters)}
+
+\begin{enumerate}
+	\item Refer back to the lists of useful mutate and filtering functions. Describe how each operation changes when you combine it with grouping.
+	
+	\item What time of day should you fly if you want to avoid delays as much as possible?
+	
+	\item For each destination, compute the total minutes of delay. For each flight, compute the proportion of the total delay for its destination.
+	
+	\item Delays are typically temporally correlated: even once the problem that caused the initial delay has been resolved, later flights are delayed to allow earlier flights to leave. Using \texttt{lag()} explore how the delay of a flight is related to the delay of the immediately preceding flight.
+	
+	\item Look at each destination. Can you find flights that are suspiciously fast? (i.e. flights that represent a potential data entry error). Compute the air time of a flight relative to the shortest flight to that destination. Which flights were most delayed in the air?
+	
+	\item Find all destinations that are flown by at least two carriers. Use that information to rank the carriers.
+	
+	\item For each plane, count the number of flights before the first delay of greater than 1 hour.
+	
+	
+	
+	
+\end{enumerate}
+%------------------------------------------------------------------
+\subsection*{Problem 7: Data visualization}
+\textbf{First steps}
+\begin{enumerate}
+	\item Use \texttt{tidyverse} package, and run \texttt{ggplot(data = mpg)} what do you see?
+	
+	\item How many rows and many columns are in \texttt{mpg} data frame?
+	
+	\item What does the \texttt{drv} variable describe? Read the help for \texttt{?mpg} to find out.
+	
+	\item Make a scatterplot of \texttt{hwy} vs \texttt{cyl}.
+	
+	\item What happens if you make a scatterplot of \texttt{class} vs \texttt{drv}? Why is the plot not useful?	
 	
 \end{enumerate}
 
-%------------------------------------------------------------------
+\noindent \textbf{Aesthetic mappings	}
 
-\subsection*{Problem 5: Export the dataset and the output}
+\begin{enumerate}
+	\item What's gone wrong with this code? Why are the points not blue? Please run it, you will see the points not blue. 
+	
+	\texttt{ggplot(data = mpg) +}
+	
+	\texttt{geom\_point(mapping = aes(x = displ, y = hwy, colour = "blue"))}
+	
+	\item Which variables in \texttt{mpg} are categorical? Which variables are continuous?
+	
+	\item Map a continuous variable to \texttt{color}, \texttt{size}, and \texttt{shape}. How do these aesthetics behave differently for categorical vs. continuous variables?
+	
+	\item What happens if you map the same variable to multiple aesthetics?
+	
+	\item What does the \texttt{stroke} aesthetic do? What shapes does it work with? (Hint: use \texttt{?geom\_point})
+	
+	\item What happens if you map an aesthetic to something other than a variable name, like \texttt{aes(colour = displ < 5)}? Note, you?ll also need to specify x and y.
 
-%------------------------------------------------------------------
+\end{enumerate}
 
-\subsection*{Problem 6: Data transformations}
+\noindent \textbf{Facets}
 
-%------------------------------------------------------------------
-
-\subsection*{Problem 7: Data transformations}
-
+\begin{enumerate}
+	\item What happens if you facet on a continuous variable? Please run the code below, you will see the result. 
+	
+	\texttt{ggplot(mpg, aes(x = displ, y = hwy)) +}
+	
+	\texttt{geom\_point() +}
+	
+	\texttt{facet\_grid(. $\sim$ cty)}
+	
+	\item What do the empty cells in plot with \texttt{facet\_grid(drv $\sim$ cyl)} mean? How do they relate to this plot?
+	
+	\texttt{ggplot(data = mpg) + }
+	
+	\texttt{geom\_point(mapping = aes(x = drv, y = cyl))}
+	
+\end{enumerate}
 \end{document}
