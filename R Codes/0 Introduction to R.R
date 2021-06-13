@@ -31,10 +31,11 @@ directory <- "C:/Econometrics/DataR/"
 
 # Get and set working directory
 getwd()
-# setwd("C:/Econometrics/")
+setwd("C:/Users/Nith Kosal/Documents/Kosal Documents/Teaching/DataVisualization")
+
 
 # Read dataset
-# data <- read.csv("C:/Econometrics/DataR/wage1.csv")
+data <- read.csv("Data/wage1.csv")
 data <- read.csv(paste0(directory, "wage1.csv"))
 
 # Exploring data ----------------------------------------------------------
@@ -86,6 +87,7 @@ summary(linear.model.1)
 
 # Export results in table
 stargazer(linear.model.1, type = "html", out = "regtable.html")
+
 # 'stargazer' produces html file or Word file.
 # The output is exported to the current working directory.
 

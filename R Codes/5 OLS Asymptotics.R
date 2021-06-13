@@ -23,6 +23,8 @@ for(i in PackageNames){
 # OLS standard errors -----------------------------------------------------
 
 wage1 <- read.csv(paste0(directory, "wage1.csv"))
+wage1 <- read.csv("Data/wage1.csv")
+
 
 # Regression with full sample
 model <- lm(wage ~ educ + tenure + exper, wage1)

@@ -23,10 +23,18 @@ for(i in PackageNames){
   }
 }
 
+# Load packages
+library(tidyverse)
+library(magrittr)
+library(stargazer)
+library(moments)
+
+
 # Simple regression ----------------------------------------------------
 
 # CEO salary example 
 CEOSAL1 <- read.csv(paste0(directory, "CEOSAL1.csv"))
+CEOSAL1 <- read.csv("Data/CEOSAL1.csv")
 
 CEOSAL1 %<>% select(salary, roe)
 str(CEOSAL1)
@@ -55,6 +63,8 @@ ggplot(data = CEOSAL1, mapping = aes(x = roe, y = salary)) +
 
 # Wage example
 wage1 <- read.csv(paste0(directory, "wage1.csv"))
+wage1 <- read.csv("Data/wage1.csv")
+
 wage1 %<>% select(wage, educ)
 str(wage1)
 stargazer(wage1, type = "text")
@@ -134,6 +144,8 @@ nobs(model_wage1)
 
 # CEO salary example
 CEOSAL2 <- read.csv(paste0(directory, "CEOSAL1.csv"))
+CEOSAL2 <- read.csv("Data/CEOSAL1.csv")
+
 CEOSAL2 %>% select(salary, lsalary, sales, lsales) %>% head(10)
 
 # Linear form
@@ -145,9 +157,8 @@ ggplot(CEOSAL2, aes(x = sales, y = salary)) +
   geom_smooth(method = lm, se = FALSE)
 
 # Create the log of a variable using the log function
-# CEOSAL2 <- CEOSAL2 %>% mutate(lsales = log(sales),
-#                               lsalary = log(salary))
-
+CEOSAL2 <- CEOSAL2 %>% mutate(lsales = log(sales),
+                               lsalary = log(salary))
 # Log-log form
 model_CEOSAL3 <- lm(lsalary ~ lsales, CEOSAL2)
 summary(model_CEOSAL3)
@@ -174,6 +185,8 @@ ggplot(CEOSAL2, aes(x = sales, y = lsalary)) +
 
 # Wage Example 
 wage2 <- read.csv(paste0(directory, "wage1.csv"))
+wage2 <- read.csv("Data/wage1.csv")
+
 select(wage2, wage, lwage, educ) %>% head(10)
 
 # Linear form
@@ -191,3 +204,4 @@ summary(model_wage3)
 ggplot(wage2, aes(educ, lwage)) +
   geom_point() +
   geom_smooth(method = lm, se = F)
+

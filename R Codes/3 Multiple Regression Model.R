@@ -29,6 +29,12 @@ for(i in PackageNames){
   }
 }
 
+# Load packages
+library(tidyverse)
+library(magrittr)
+library(stargazer)
+library(moments)
+
 
 # Multiple regression --------------------------------------------------
 
@@ -37,6 +43,8 @@ for(i in PackageNames){
 
 # Wage Example
 wage1 <- read.csv(paste0(directory, "wage1.csv"))
+wage1 <- read.csv("Data/wage1.csv")
+
 wage1 %>% 
   select(wage, educ, exper, tenure) %>% 
   head(10)
@@ -160,6 +168,8 @@ adj_R_squared
 
 # CEO Salary Example 
 CEOSAL1 <- read.csv(paste0(directory, "CEOSAL1.csv"))
+CEOSAL1 <- read.csv("Data/CEOSAL1.csv")
+
 CEOSAL1 %>% 
   select(salary, lsalary, roe, sales, lsales) %>%
   head(10)
@@ -235,6 +245,7 @@ summary(model_no_constant)
 
 # Test scores example
 elemapi2 <- read.csv(paste0(directory, "elemapi2.csv"))
+elemapi2 <- read.csv("Data/elemapi2.csv")
 
 elemapi2 %<>% select(api00, avg_ed, grad_sch, col_grad)
 str(elemapi2)
@@ -271,6 +282,8 @@ vif(model_low_vif)
 
 # Wage2 example
 HTV <- read.csv(paste0(directory, "HTV.csv"))
+HTV <- read.csv("Data/HTV.csv")
+
 HTV %<>% select(wage, educ, abil)
 str(HTV)
 stargazer(HTV, type = "text")
@@ -367,3 +380,4 @@ ggplot(data = wage1, mapping = aes(x = exper)) +
   ylab(label = "Residuals")
 
 # Graphs show heteroscedasticity for educ and homoscedasticity for exper
+

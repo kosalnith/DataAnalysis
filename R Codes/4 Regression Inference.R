@@ -29,6 +29,7 @@ for(i in PackageNames){
 
 # Wage example
 wage1 <- read.csv(paste0(directory, "wage1.csv"))
+wage1 <- read.csv("Data/wage1.csv")
 
 wage1 %>% 
   select(wage, educ, exper, tenure, female) %>% 
@@ -299,3 +300,4 @@ qchisq(p = 0.95, df = q)
 # P-value for chi-square distribution
 pchisq(LM_stat, df = q, lower.tail = FALSE)
 # If p-value < 0.05 then reject null, coefficients are jointly significant
+

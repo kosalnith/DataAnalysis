@@ -28,6 +28,8 @@ for(i in PackageNames){
 
 # Wage example
 wage1 <- read.csv(paste0(directory, "wage1.csv"))
+wage1 <- read.csv("Data/wage1.csv")
+
 
 # Regression
 model_1 <- lm(wage ~ educ, wage1)
@@ -161,6 +163,7 @@ ggplot(wage1, aes(x = exper)) +
 
 # CEO salary example
 CEOSAL2 <- read.csv(paste0(directory, "CEOSAL2.csv"))
+CEOSAL2 <- read.csv("Data/CEOSAL2.csv")
 
 CEOSAL2 %<>% select(salary, sales, profits, lsalary, lsales)
 str(CEOSAL2)
@@ -214,3 +217,4 @@ lm(lsalary_d ~ lsales   + profits, CEOSAL2) %>% summary
 lm(lsalary   ~ lsales_k + profits, CEOSAL2) %>% summary
 lm(lsalary_d ~ lsales_k + profits, CEOSAL2) %>% summary
 # When logged variables are rescaled, the coefficients do not change.
+

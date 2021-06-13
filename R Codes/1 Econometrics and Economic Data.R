@@ -25,6 +25,11 @@ for(i in PackageNames){
     require(i, character.only = T)
   }
 }
+# Load packages
+library(tidyverse)
+library(magrittr)
+library(stargazer)
+library(moments)
 
 # Cross-sectional data -------------------------------------------------
 
@@ -33,9 +38,11 @@ for(i in PackageNames){
 
 # Load the dataset
 wage <- read.csv(paste0(directory, "wage1.csv"))
+wage <- read.csv("Data/wage1.csv")
 
 # Summarize the data
 stargazer(wage, type = "text")
+summary(wage)
 
 # Summarize the data for selected variables
 wage %>% 
@@ -62,6 +69,8 @@ table(wage$female)
 
 # Load the dataset and keep only select variables
 prminwge <- read.csv(paste0(directory, "prminwge.csv"))
+prminwge <- read.csv("Data/prminwge.csv")
+
 prminwge %<>% select(year, avgmin, avgcov, prunemp, prgnp)
 
 # Describe and summarize data
@@ -78,6 +87,8 @@ table(prminwge$year)
 
 # Load the dataset and keep only select variables
 hprice3 <- read.csv(paste0(directory, "hprice3.csv"))
+hprice3 <- read.csv("Data/hprice3.csv")
+
 hprice3 %<>% select(year, y81, price, lprice, rooms, baths)
 
 # Describe and summarize the data
@@ -114,6 +125,7 @@ hprice3 %>%
 # time identifier is year
 
 wagepan <- read.csv(paste0(directory, "wagepan.csv"))
+wagepan <- read.csv("Data/wagepan.csv")
 
 wagepan %<>% select(nr, year, lwage, exper, educ, hours)
 
