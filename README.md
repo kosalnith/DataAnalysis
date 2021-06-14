@@ -4,6 +4,10 @@ This repository is a sample code of the data import, data visualization, data tr
 
 This course is primarily designed for the 2021 Young Research Fellow at Future Forum for the fundamental data analysis by using RStudio application in empirical research. The goal of this seminar is to provide an overview of R commands in data import, data visualization, data transformation, data analysis and data export, with an emphasis on practical implementation. I will provide a set of slides, codes and notes. There are additional background papers that are largely optional.
 
+Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
+
+
+
 ## Course Materials 
 * [**Main Data Visualization**](https://github.com/nithkosal/DataVisualization/blob/main/Codes/DataVisualization.Rmd), — with the Rmd file, you can use these codes to replicate it or download it with a PDF export file [here](https://github.com/nithkosal/DataVisualization/blob/main/DataVisualization.pdf). 
 * [**Findata Example**](https://github.com/nithkosal/DataVisualization/blob/main/Codes/Findata.R), is a real particle with 2017 financial inclusion microdata covering nearly 150,000 people in 144 economies, representing more than 97% of the world’s population which produced by the World Bank.
