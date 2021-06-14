@@ -70,12 +70,12 @@
 	xVec <- sample(0:999, 250, replace=T)\\
 	yVec <- sample(0:999, 250, replace=T)}
 
-	Suppose $x = (x1, x2, ..., x_{n})$ denotes the vector \texttt{xVec} and $y = (y1, y2, ..., y_{n})$ denotes the vector \texttt{yVec}.
+	Suppose $x = (x_{1}, x_{2}, ..., x_{n})$ denotes the vector \texttt{xVec} and $y = (y_{1}, y_{2}, ..., y_{n})$ denotes the vector \texttt{yVec}.
 	
 	\begin{enumerate}
-		\item Create the vector $(y_{2}-x_{1}, ..., y_{n}-x_{n-1})$. 
-		\item Create the vector $(\dfrac{sin(y_{1})}{cos(x_{2})}, \dfrac{sin(y_{2})}{cos(x_{x})}, ..., \dfrac{sin(y_{n-1})}{cos(x_{n})})$
-		\item Create the vector $(x_{1} + 2x_{2} - x_{3}, x_{2} + 2x_{3} - x{4}, ..., x{n-2} +2x_{n-1} - x_{n})$. 
+		\item Create the vector $(y_{2}-x_{1}, ..., y_{n}-x_{n-1})$
+		\item Create the vector $\left ( \dfrac{sin(y_{1})}{cos(x_{2})}, \dfrac{sin(y_{2})}{cos(x_{3})}, ..., \dfrac{sin(y_{n-1})}{cos(x_{n})}\right )$
+		\item Create the vector $(x_{1} + 2x_{2} - x_{3}, x_{2} + 2x_{3} - x{4}, ..., x_{n-2} +2x_{n-1} - x_{n})$
 		\everymath{\displaystyle}  
 		\item Calculate $\sum_{i=1}^{n-1} \dfrac{e^{-x_{i+1}}}{x_{i} + 10}$
 	\end{enumerate}
@@ -86,12 +86,15 @@
 		\item Pick out the values in \texttt{yVec} which are >400.
 		\item What are the index positions in \texttt{yVec} of the values which are >400? 
 		\item What are the values in \texttt{xVec} which correspond to the values in \texttt{yVec} which are >400? (By correspond, we mean at the same index positions.)
-		\item Create the vector $(|x_{1} - \bar{X}|^{1/2}, |x_{2} - \bar{X}|^{1/2}, ..., |x_{n} - \bar{X}|^{1/2})$ where $\bar{X}$ denotes the mean of the vector $X = (x_{1}, x_{2}, ..., x_{n}$. 
+		\item Create the vector $(|x_{1} - \bar{X}|^{1/2}, |x_{2} - \bar{X}|^{1/2}, ..., |x_{n} - \bar{X}|^{1/2})$ where $\bar{X}$ denotes the mean of the vector $X = (x_{1}, x_{2}, ..., x_{n})$. 
 		
 		\item How many values in \texttt{yVec} are within 200 of the maximum value of the terms in \texttt{yVec}?
-		(f) How many numbers in xVec are divisible by 2? (Note that the modulo operator is denoted \%\%.)
-		(g) Sort the numbers in the vector \texttt{xVec} in the order of increasing values in \texttt{yVec}.
-		(h) Pick out the elements in \texttt{yVec} at index positions 1, 4, 7, 10, 13, ...
+		
+		\item How many numbers in xVec are divisible by 2? (Note that the modulo operator is denoted \texttt{\%\%}.)
+		
+		\item Sort the numbers in the vector \texttt{xVec} in the order of increasing values in \texttt{yVec}.
+		
+		\item Pick out the elements in \texttt{yVec} at index positions 1, 4, 7, 10, 13, ...
 	
 	\end{enumerate}
 
@@ -187,7 +190,7 @@
 	$$4x_{1} + 3x_{2} + 2x_{3} + x_{4} + 2x_{5} = 5$$
 	$$5x_{1} + 4x_{2} + 3x_{3} + 2x_{4} + x_{5} = 17$$
 	
-	by considering an appropriate matrix equation $Ax = y$.
+	by considering an appropriate matrix equation $AX = y$.
 	Make use of the special form of the matrix $A$. The method used for the solution should easily generalize to a larger set of equations where the matrix $A$ has the same structure; hence the solution should not involve typing in every number of $A$.
 	\end{enumerate}	
 %------------------------------------------------------------------
@@ -241,8 +244,6 @@
 	 \item Create a table that gives, for each species represented in the data frame \texttt{rainforest} (DAAG package), the number of values of branch that are NAs, and the total number of cases.
 	 [Hint: Use either \texttt{!is.na()} or \texttt{complete.cases()} to identify NAs.]
 	 
-	 \item Create a data frame called \texttt{Manitoba.lakes} that contains the lake?s elevation (in meters  above sea level) and area (in square kilometers) as listed below. Assign the names of the lakes
-	 using the \texttt{row.names()} function.
 \end{enumerate}
 
 %------------------------------------------------------------------
@@ -357,62 +358,6 @@
 	\item For each plane, count the number of flights before the first delay of greater than 1 hour.
 	
 	
-	
-	
 \end{enumerate}
 %------------------------------------------------------------------
-\subsection*{Problem 7: Data visualization}
-\textbf{First steps}
-\begin{enumerate}
-	\item Use \texttt{tidyverse} package, and run \texttt{ggplot(data = mpg)} what do you see?
-	
-	\item How many rows and many columns are in \texttt{mpg} data frame?
-	
-	\item What does the \texttt{drv} variable describe? Read the help for \texttt{?mpg} to find out.
-	
-	\item Make a scatterplot of \texttt{hwy} vs \texttt{cyl}.
-	
-	\item What happens if you make a scatterplot of \texttt{class} vs \texttt{drv}? Why is the plot not useful?	
-	
-\end{enumerate}
-
-\noindent \textbf{Aesthetic mappings	}
-
-\begin{enumerate}
-	\item What's gone wrong with this code? Why are the points not blue? Please run it, you will see the points not blue. 
-	
-	\texttt{ggplot(data = mpg) +}
-	
-	\texttt{geom\_point(mapping = aes(x = displ, y = hwy, colour = "blue"))}
-	
-	\item Which variables in \texttt{mpg} are categorical? Which variables are continuous?
-	
-	\item Map a continuous variable to \texttt{color}, \texttt{size}, and \texttt{shape}. How do these aesthetics behave differently for categorical vs. continuous variables?
-	
-	\item What happens if you map the same variable to multiple aesthetics?
-	
-	\item What does the \texttt{stroke} aesthetic do? What shapes does it work with? (Hint: use \texttt{?geom\_point})
-	
-	\item What happens if you map an aesthetic to something other than a variable name, like \texttt{aes(colour = displ < 5)}? Note, you?ll also need to specify x and y.
-
-\end{enumerate}
-
-\noindent \textbf{Facets}
-
-\begin{enumerate}
-	\item What happens if you facet on a continuous variable? Please run the code below, you will see the result. 
-	
-	\texttt{ggplot(mpg, aes(x = displ, y = hwy)) +}
-	
-	\texttt{geom\_point() +}
-	
-	\texttt{facet\_grid(. $\sim$ cty)}
-	
-	\item What do the empty cells in plot with \texttt{facet\_grid(drv $\sim$ cyl)} mean? How do they relate to this plot?
-	
-	\texttt{ggplot(data = mpg) + }
-	
-	\texttt{geom\_point(mapping = aes(x = drv, y = cyl))}
-	
-\end{enumerate}
 \end{document}
