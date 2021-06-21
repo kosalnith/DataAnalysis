@@ -4,7 +4,7 @@ This repository is a sample code of the data import, data visualization, data tr
 
 This course is primarily designed for the 2021 Young Research Fellow at Future Forum for the fundamental data analysis by using RStudio application in empirical research. The goal of this seminar is to provide an overview of R commands in data import, data visualization, data transformation, data analysis and data export, with an emphasis on practical implementation. I will provide a set of slides, codes and notes. There are additional background papers that are largely optional.
 
-Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
+- Seminar videos are available on [Youtube](https://youtube.com/playlist?list=PL3ncM3OcaPgY-xFnfyZHFEvvJly22WtjG)
 
 
 
