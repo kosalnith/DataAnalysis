@@ -1,7 +1,0 @@
-{
-    "installOptions": {
-        "installFromRepository": true,
-        "libraryPath": "C:/Users/Nith Kosal/Documents/R/win-library/3.6",
-        "installDependencies": true
-    }
-}
