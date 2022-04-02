@@ -1,0 +1,5 @@
+"first" "last" "gender" "date" "month"
+"1" "Harry" "Potter" "M" 31 "Jul"
+"2" "Ron" "Wesley" "M" 1 "March"
+"3" "Hermione" "Granger" "F" 19 "Sep"
+"4" "Ginny" "Wesley" "F" 11 "Aug"
