@@ -1,6 +1,6 @@
 # Data Analysis for Social Science with RStudio
 
-This repository is a sample code of the data import, data visualization, data transformation and data export in R programming. It also used for a sharing session at the 2021 Young Research Fellow Seminar. 
+This repository is a sample code of the data import, data visualization, data transformation and data export in R programming. It also used for a sharing session at the Young Research Fellow Seminar. 
 
 This course is primarily designed for the 2021 Young Research Fellow at Future Forum for the fundamental data analysis by using RStudio application in empirical research. The goal of this seminar is to provide an overview of R commands in data import, data visualization, data transformation, data analysis and data export, with an emphasis on practical implementation. I will provide a set of slides, codes and notes. There are additional background papers that are largely optional.
 
