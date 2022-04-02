@@ -10,7 +10,8 @@ Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
 
 ## Course Materials 
 **2021 Young Research Fellow Seminar**
-* [**Course Instruction**](https://github.com/nithkosal/DataAnalysis/blob/main/Instruction/CourseInstruction.pdf))
+* [**Course Instruction**](https://github.com/nithkosal/DataAnalysis/blob/main/Instruction/CourseInstruction.pdf)
+* [**Pre-Excercise with RStudio**](https://github.com/nithkosal/DataAnalysis/blob/main/Excercise/Excercise.pdf)
 
 **2021 Young Research Fellow Seminar**
 * [**Main Data Visualization**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/DataVisualization.Rmd), — with the Rmd file, you can use these codes to replicate it or download it with a PDF export file [here](https://github.com/nithkosal/DataVisualization/blob/main/DataVisualization.pdf). 
