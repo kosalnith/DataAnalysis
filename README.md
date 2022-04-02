@@ -1,14 +1,19 @@
 # Data Analysis for Social Science with RStudio
 
-This repository is a sample code of the data import, data visualization, data transformation and data export in R programming. It also used for a sharing session at the 2021 Young Research Fellow Seminar. 
+This repository is a sample code of the data import, data visualization, data transformation and data export in R programming. It also used for a sharing session at the Young Research Fellow Seminar. 
 
-This course is primarily designed for the 2021 Young Research Fellow at Future Forum for the fundamental data analysis by using RStudio application in empirical research. The goal of this seminar is to provide an overview of R commands in data import, data visualization, data transformation, data analysis and data export, with an emphasis on practical implementation. I will provide a set of slides, codes and notes. There are additional background papers that are largely optional.
+This course is primarily designed for the Young Research Fellow at Future Forum for the fundamental data analysis by using RStudio application in empirical research. The goal of this seminar is to provide an overview of R commands in data import, data visualization, data transformation, data analysis and data export, with an emphasis on practical implementation. I will provide a set of slides, codes and notes. There are additional background papers that are largely optional.
 
 Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
 
 
 
 ## Course Materials 
+**2021 Young Research Fellow Seminar**
+* [**Course Instruction**](https://github.com/nithkosal/DataAnalysis/blob/main/Instruction/CourseInstruction.pdf)
+* [**Pre-Excercise with RStudio**](https://github.com/nithkosal/DataAnalysis/blob/main/Excercise/Excercise.pdf)
+
+**2021 Young Research Fellow Seminar**
 * [**Main Data Visualization**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/DataVisualization.Rmd), — with the Rmd file, you can use these codes to replicate it or download it with a PDF export file [here](https://github.com/nithkosal/DataVisualization/blob/main/DataVisualization.pdf). 
 * [**Findata Example**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/Findata.R), is a real particle with 2017 financial inclusion microdata covering nearly 150,000 people in 144 economies, representing more than 97% of the world’s population which produced by the World Bank.
 * [**Maliecon Example**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/maliecon.R), is a code for a research project on economic development in Mali for the master thesiss which takes from [Phay Thounimith](https://github.com/nimithphay). I would like to point out that he used French in that code.
