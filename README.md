@@ -9,7 +9,10 @@ Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
 
 
 ## Course Materials 
-### 2021 Young Research Fellow Seminar
+**2021 Young Research Fellow Seminar**
+* [**Course Instruction**](https://github.com/nithkosal/DataAnalysis/blob/main/Instruction/CourseInstruction.pdf))
+
+**2021 Young Research Fellow Seminar**
 * [**Main Data Visualization**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/DataVisualization.Rmd), — with the Rmd file, you can use these codes to replicate it or download it with a PDF export file [here](https://github.com/nithkosal/DataVisualization/blob/main/DataVisualization.pdf). 
 * [**Findata Example**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/Findata.R), is a real particle with 2017 financial inclusion microdata covering nearly 150,000 people in 144 economies, representing more than 97% of the world’s population which produced by the World Bank.
 * [**Maliecon Example**](https://github.com/nithkosal/DataAnalysis/blob/main/Codes/maliecon.R), is a code for a research project on economic development in Mali for the master thesiss which takes from [Phay Thounimith](https://github.com/nimithphay). I would like to point out that he used French in that code.
