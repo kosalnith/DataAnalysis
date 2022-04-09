@@ -177,7 +177,7 @@ So let we go with some datasets on R
 mtcars
 
 mymtcars <- mtcars
-mymtcar
+mymtcars
 class(mymtcars)
 class(mymtcars$mpg)
 # list the variables in `mymtcars`
