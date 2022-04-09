@@ -9,7 +9,7 @@ Seminar videos are available on [Youtube](https://youtu.be/cu5lMc4TEyg)
 
 
 ## Course Materials 
-**2021 Young Research Fellow Seminar**
+**2022 Young Research Fellow Seminar**
 
 To do the exercises, you should download the datasets from this reponsitory. 
 * [**Course Instruction**](https://github.com/nithkosal/DataAnalysis/blob/main/Instruction/CourseInstruction.pdf)
